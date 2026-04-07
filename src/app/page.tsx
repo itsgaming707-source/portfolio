@@ -467,6 +467,27 @@ export default function Home() {
                   </motion.div>
                 </div>
               </motion.div>
+
+              {/* Category: AI & Automation */}
+              <motion.div variants={{ hidden: { opacity: 0, x: -20 }, visible: { opacity: 1, x: 0 } }} className="relative pl-8 border-l-2 border-[#4dabf7]/40">
+                <div className="absolute -left-[5px] top-1 w-2 h-2 rounded-full bg-[#4dabf7] shadow-[0_0_10px_#4dabf7]"></div>
+                <div className="group relative -ml-4 -mr-4 px-4 py-2 mb-4 cursor-default overflow-hidden rounded-xl">
+                  <div className="absolute inset-0 bg-gradient-to-r from-teal-500/10 to-[#4dabf7]/10 scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-400 ease-out rounded-xl"></div>
+                  <h4 className="relative text-xl font-bold text-[#4dabf7] tracking-wide group-hover:translate-x-2 transition-transform duration-400 ease-out">AI & Automation</h4>
+                </div>
+                <div className="flex flex-wrap gap-4">
+                  <motion.div whileHover={{ y: -2 }} className="group px-5 py-3 bg-zinc-900/40 border border-zinc-800 rounded-xl flex items-center gap-3 hover:border-[#4dabf7]/60 hover:bg-[#4dabf7]/5 shadow-sm hover:shadow-[0_0_20px_rgba(77,171,247,0.15)] transition-all duration-300">
+                    <svg viewBox="0 0 24 24" className="w-6 h-6 md:w-7 md:h-7 drop-shadow-[0_2px_10px_rgba(16,163,127,0.4)] group-hover:scale-110 transition-transform duration-300" fill="none">
+                      <path d="M22.282 9.821a5.985 5.985 0 0 0-.516-4.91 6.046 6.046 0 0 0-6.51-2.9A6.065 6.065 0 0 0 4.981 4.18a5.985 5.985 0 0 0-3.998 2.9 6.046 6.046 0 0 0 .743 7.097 5.98 5.98 0 0 0 .51 4.911 6.051 6.051 0 0 0 6.515 2.9A5.985 5.985 0 0 0 13.26 24a6.056 6.056 0 0 0 5.772-4.206 5.99 5.99 0 0 0 3.997-2.9 6.056 6.056 0 0 0-.747-7.073zM13.26 22.43a4.476 4.476 0 0 1-2.876-1.04l.141-.081 4.779-2.758a.795.795 0 0 0 .392-.681v-6.737l2.02 1.168a.071.071 0 0 1 .038.052v5.583a4.504 4.504 0 0 1-4.494 4.494zM3.6 18.304a4.47 4.47 0 0 1-.535-3.014l.142.085 4.783 2.759a.771.771 0 0 0 .78 0l5.843-3.369v2.332a.08.08 0 0 1-.033.062L9.74 19.95a4.5 4.5 0 0 1-6.14-1.646zM2.34 7.896a4.485 4.485 0 0 1 2.366-1.973V11.6a.766.766 0 0 0 .388.676l5.815 3.355-2.02 1.168a.076.076 0 0 1-.071 0l-4.83-2.786A4.504 4.504 0 0 1 2.34 7.872zm16.597 3.855l-5.833-3.387L15.119 7.2a.076.076 0 0 1 .071 0l4.83 2.791a4.494 4.494 0 0 1-.676 8.105v-5.678a.79.79 0 0 0-.407-.667zm2.01-3.023l-.141-.085-4.774-2.782a.776.776 0 0 0-.785 0L9.409 9.23V6.897a.066.066 0 0 1 .028-.061l4.83-2.787a4.5 4.5 0 0 1 6.68 4.66zm-12.64 4.135l-2.02-1.164a.08.08 0 0 1-.038-.057V6.075a4.5 4.5 0 0 1 7.375-3.453l-.142.08L8.704 5.46a.795.795 0 0 0-.393.681zm1.097-2.365l2.602-1.5 2.607 1.5v2.999l-2.597 1.5-2.607-1.5z" fill="#10a37f"/>
+                    </svg>
+                    <span className="text-zinc-200 font-medium">ChatGPT</span>
+                  </motion.div>
+                  <motion.div whileHover={{ y: -2 }} className="group px-5 py-3 bg-zinc-900/40 border border-zinc-800 rounded-xl flex items-center gap-3 hover:border-[#4dabf7]/60 hover:bg-[#4dabf7]/5 shadow-sm hover:shadow-[0_0_20px_rgba(77,171,247,0.15)] transition-all duration-300">
+                    <img src="/logo/claude_logo.jpg" alt="Claude Logo" className="w-6 h-6 md:w-7 md:h-7 object-contain drop-shadow-[0_2px_10px_rgba(204,133,61,0.4)] group-hover:scale-110 transition-transform duration-300 rounded-sm" />
+                    <span className="text-zinc-200 font-medium">Claude</span>
+                  </motion.div>
+                </div>
+              </motion.div>
             </div>
           </motion.div>
         </section>
