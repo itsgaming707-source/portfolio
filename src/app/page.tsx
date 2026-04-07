@@ -234,83 +234,80 @@ export default function Home() {
             whileInView="visible"
             viewport={{ once: true, amount: 0.1 }}
             variants={{
-              hidden: { opacity: 0, y: 40 },
-              visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut", staggerChildren: 0.15 } },
+              hidden: { opacity: 0, y: 60 },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1], staggerChildren: 0.18 } },
             }}
             className="max-w-6xl mx-auto"
           >
-            <div className="flex items-center gap-6 mb-16">
+            <motion.div
+              variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+              className="flex items-center gap-6 mb-16"
+            >
               <h2 className="text-3xl md:text-5xl font-bold bg-gradient-to-r from-blue-400 via-teal-400 to-emerald-400 bg-clip-text text-transparent">
                 Projects
               </h2>
               <div className="h-px flex-1 bg-gradient-to-r from-zinc-800 to-transparent"></div>
-            </div>
+            </motion.div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {/* Project 1 - Blinkit */}
               <motion.div
-                variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-                whileHover={{ y: -8 }}
-                className="group relative bg-[#121212] rounded-2xl p-8 border border-blue-500/30 overflow-hidden shadow-lg shadow-black/40 hover:shadow-[0_0_30px_rgba(59,130,246,0.15)] transition-all duration-300 flex flex-col h-full"
+                variants={{ hidden: { opacity: 0, y: 30, scale: 0.97 }, visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } } }}
+                whileHover={{ y: -8, scale: 1.03, transition: { type: "spring", stiffness: 300, damping: 20 } }}
+                className="group relative bg-[#121212] rounded-2xl p-8 border border-blue-500/30 overflow-hidden shadow-lg shadow-black/40 hover:shadow-[0_8px_40px_rgba(59,130,246,0.2)] hover:border-blue-400/50 transition-all duration-300 flex flex-col h-full"
               >
-                <div className="absolute top-0 right-0 p-4">
-                  <span className="bg-blue-500/10 text-blue-400 text-xs font-bold px-3 py-1 rounded-full border border-blue-500/20 shadow-[0_0_10px_rgba(59,130,246,0.2)]">Featured</span>
-                </div>
+
                 <h3 className="text-2xl font-bold text-zinc-100 mb-3 group-hover:text-blue-400 transition-colors pr-20">Blinkit Sales Analysis</h3>
                 <p className="text-zinc-400 mb-6 text-sm leading-relaxed">
-                  A comprehensive analysis of Blinkit sales data to uncover purchasing trends and optimize inventory distribution across various outlet types.
+                  Performed end-to-end analysis of Blinkit sales data using Python to uncover trends in product performance, pricing, and outlet impact.
                 </p>
                 <div className="flex flex-wrap gap-2 mb-6">
-                  <span className="bg-zinc-800/80 text-zinc-300 text-xs px-3 py-1 rounded-md">Power BI</span>
-                  <span className="bg-zinc-800/80 text-zinc-300 text-xs px-3 py-1 rounded-md">Excel</span>
-                  <span className="bg-zinc-800/80 text-zinc-300 text-xs px-3 py-1 rounded-md">Data Modeling</span>
+                  <span className="bg-zinc-800/80 text-zinc-300 text-xs px-3 py-1 rounded-md">Python</span>
+                  <span className="bg-zinc-800/80 text-zinc-300 text-xs px-3 py-1 rounded-md">Pandas</span>
+                  <span className="bg-zinc-800/80 text-zinc-300 text-xs px-3 py-1 rounded-md">Seaborn</span>
+                  <span className="bg-zinc-800/80 text-zinc-300 text-xs px-3 py-1 rounded-md">EDA</span>
                 </div>
                 <div className="mb-8">
                   <h4 className="text-zinc-200 text-sm font-semibold mb-3">Key Insights:</h4>
                   <ul className="space-y-2 text-sm text-zinc-400">
-                    <li className="flex items-start gap-2"><span className="text-blue-400 mt-0.5">•</span> Identified top-performing product categories driving 40% of overall sales.</li>
-                    <li className="flex items-start gap-2"><span className="text-blue-400 mt-0.5">•</span> Analyzed sales across different tier cities, highlighting Tier 3 growth.</li>
-                    <li className="flex items-start gap-2"><span className="text-blue-400 mt-0.5">•</span> Developed an interactive dashboard for real-time outlet performance tracking.</li>
+                    <li className="flex items-start gap-2"><span className="text-blue-400 mt-0.5">•</span> Tier 1 &amp; 2 outlets outperform Tier 3 in average sales</li>
+                    <li className="flex items-start gap-2"><span className="text-blue-400 mt-0.5">•</span> Pricing has a stronger impact on sales than item visibility</li>
+                    <li className="flex items-start gap-2"><span className="text-blue-400 mt-0.5">•</span> Supermarket Type 1 contributes highest sales volume</li>
                   </ul>
                 </div>
                 <div className="flex items-center gap-4 mt-auto pt-4">
-                  <a href="https://github.com/nikhilydv1026" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm font-medium text-zinc-300 hover:text-white bg-zinc-800/50 hover:bg-zinc-700/50 px-4 py-2 rounded-lg transition-colors border border-white/5">
+                  <a href="https://github.com/nikhilydv1026/blinkit-sales-analysis-python" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm font-medium text-zinc-300 hover:text-white bg-zinc-800/50 hover:bg-zinc-700/50 px-4 py-2 rounded-lg transition-colors border border-white/5">
                     <img src="/logo/github.png" alt="GitHub" className="w-5 h-5 invert" /> GitHub
-                  </a>
-                  <a href="#" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm font-medium text-zinc-300 hover:text-blue-400 px-4 py-2 rounded-lg transition-colors border border-transparent hover:border-blue-500/30">
-                     <span className="material-symbols-outlined text-[20px]">open_in_new</span> Dashboard
                   </a>
                 </div>
               </motion.div>
 
               {/* Project 2 - Customer Analytics */}
               <motion.div
-                variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-                whileHover={{ y: -8 }}
-                className="group relative bg-[#121212] rounded-2xl p-8 border border-teal-500/30 overflow-hidden shadow-lg shadow-black/40 hover:shadow-[0_0_30px_rgba(20,184,166,0.15)] transition-all duration-300 flex flex-col h-full"
+                variants={{ hidden: { opacity: 0, y: 30, scale: 0.97 }, visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } } }}
+                whileHover={{ y: -8, scale: 1.03, transition: { type: "spring", stiffness: 300, damping: 20 } }}
+                className="group relative bg-[#121212] rounded-2xl p-8 border border-teal-500/30 overflow-hidden shadow-lg shadow-black/40 hover:shadow-[0_8px_40px_rgba(20,184,166,0.2)] hover:border-teal-400/50 transition-all duration-300 flex flex-col h-full"
               >
-                <div className="absolute top-0 right-0 p-4">
-                  <span className="bg-teal-500/10 text-teal-400 text-xs font-bold px-3 py-1 rounded-full border border-teal-500/20 shadow-[0_0_10px_rgba(20,184,166,0.2)]">Featured</span>
-                </div>
+
                 <h3 className="text-2xl font-bold text-zinc-100 mb-3 group-hover:text-teal-400 transition-colors pr-20">Customer Analytics Project</h3>
                 <p className="text-zinc-400 mb-6 text-sm leading-relaxed">
-                  In-depth analysis of customer behavior and segmentation to enhance retention strategies and personalize marketing campaigns.
+                  End-to-end customer behavior analysis using Python, SQL, and Power BI to identify trends and improve business decision-making.
                 </p>
                 <div className="flex flex-wrap gap-2 mb-6">
                   <span className="bg-zinc-800/80 text-zinc-300 text-xs px-3 py-1 rounded-md">Python</span>
-                  <span className="bg-zinc-800/80 text-zinc-300 text-xs px-3 py-1 rounded-md">Pandas</span>
-                  <span className="bg-zinc-800/80 text-zinc-300 text-xs px-3 py-1 rounded-md">Matplotlib</span>
+                  <span className="bg-zinc-800/80 text-zinc-300 text-xs px-3 py-1 rounded-md">SQL</span>
+                  <span className="bg-zinc-800/80 text-zinc-300 text-xs px-3 py-1 rounded-md">Power BI</span>
                 </div>
                 <div className="mb-8">
                   <h4 className="text-zinc-200 text-sm font-semibold mb-3">Key Insights:</h4>
                   <ul className="space-y-2 text-sm text-zinc-400">
-                    <li className="flex items-start gap-2"><span className="text-teal-400 mt-0.5">•</span> Segmented users into high, medium, and low value cohorts.</li>
-                    <li className="flex items-start gap-2"><span className="text-teal-400 mt-0.5">•</span> Discovered correlation between engagement frequency and churn rate.</li>
-                    <li className="flex items-start gap-2"><span className="text-teal-400 mt-0.5">•</span> Created predictive models for customer lifetime value estimation.</li>
+                    <li className="flex items-start gap-2"><span className="text-teal-400 mt-0.5">•</span> Identified high-value customer segments</li>
+                    <li className="flex items-start gap-2"><span className="text-teal-400 mt-0.5">•</span> Analyzed purchasing patterns across categories</li>
+                    <li className="flex items-start gap-2"><span className="text-teal-400 mt-0.5">•</span> Built interactive dashboard for business insights</li>
                   </ul>
                 </div>
                 <div className="flex items-center gap-4 mt-auto pt-4">
-                  <a href="https://github.com/nikhilydv1026" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm font-medium text-zinc-300 hover:text-white bg-zinc-800/50 hover:bg-zinc-700/50 px-4 py-2 rounded-lg transition-colors border border-white/5">
+                  <a href="https://github.com/nikhilydv1026/customer-analytics-project" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm font-medium text-zinc-300 hover:text-white bg-zinc-800/50 hover:bg-zinc-700/50 px-4 py-2 rounded-lg transition-colors border border-white/5">
                     <img src="/logo/github.png" alt="GitHub" className="w-5 h-5 invert" /> GitHub
                   </a>
                 </div>
@@ -318,13 +315,13 @@ export default function Home() {
 
               {/* Project 3 - Zepto */}
               <motion.div
-                variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-                whileHover={{ y: -8 }}
-                className="group relative bg-[#121212] rounded-2xl p-8 border border-zinc-800/60 overflow-hidden shadow-lg shadow-black/40 hover:border-zinc-500/30 transition-all duration-300 flex flex-col h-full"
+                variants={{ hidden: { opacity: 0, y: 30, scale: 0.97 }, visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } } }}
+                whileHover={{ y: -8, scale: 1.03, transition: { type: "spring", stiffness: 300, damping: 20 } }}
+                className="group relative bg-[#121212] rounded-2xl p-8 border border-zinc-800/60 overflow-hidden shadow-lg shadow-black/40 hover:border-zinc-400/40 hover:shadow-[0_8px_40px_rgba(161,161,170,0.1)] transition-all duration-300 flex flex-col h-full"
               >
                 <h3 className="text-2xl font-bold text-zinc-100 mb-3 group-hover:text-zinc-300 transition-colors">Zepto SQL Data Analysis</h3>
                 <p className="text-zinc-400 mb-6 text-sm leading-relaxed">
-                  Utilized advanced SQL queries to analyze large datasets from Zepto, extracting actionable business metrics regarding delivery times and order volumes.
+                  Analyzed e-commerce inventory dataset using SQL to extract business insights related to pricing, stock, and product performance.
                 </p>
                 <div className="flex flex-wrap gap-2 mb-6">
                   <span className="bg-zinc-800/80 text-zinc-300 text-xs px-3 py-1 rounded-md">SQL</span>
@@ -334,12 +331,13 @@ export default function Home() {
                 <div className="mb-8">
                   <h4 className="text-zinc-200 text-sm font-semibold mb-3">Key Insights:</h4>
                   <ul className="space-y-2 text-sm text-zinc-400">
-                    <li className="flex items-start gap-2"><span className="text-zinc-300 mt-0.5">•</span> Optimized complex queries reducing execution time by 30%.</li>
-                    <li className="flex items-start gap-2"><span className="text-zinc-300 mt-0.5">•</span> Uncovered peak ordering hours leading to better delivery personnel allocation.</li>
+                    <li className="flex items-start gap-2"><span className="text-zinc-300 mt-0.5">•</span> Identified top discounted and high-demand products</li>
+                    <li className="flex items-start gap-2"><span className="text-zinc-300 mt-0.5">•</span> Found high-value items that are out of stock</li>
+                    <li className="flex items-start gap-2"><span className="text-zinc-300 mt-0.5">•</span> Analyzed revenue contribution by category</li>
                   </ul>
                 </div>
                 <div className="flex items-center gap-4 mt-auto pt-4">
-                  <a href="https://github.com/nikhilydv1026" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm font-medium text-zinc-300 hover:text-white bg-zinc-800/50 hover:bg-zinc-700/50 px-4 py-2 rounded-lg transition-colors border border-white/5">
+                  <a href="https://github.com/nikhilydv1026/zepto-sql-data-analysis" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm font-medium text-zinc-300 hover:text-white bg-zinc-800/50 hover:bg-zinc-700/50 px-4 py-2 rounded-lg transition-colors border border-white/5">
                     <img src="/logo/github.png" alt="GitHub" className="w-5 h-5 invert" /> GitHub
                   </a>
                 </div>
@@ -347,28 +345,29 @@ export default function Home() {
 
               {/* Project 4 - Spam Detection */}
               <motion.div
-                variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-                whileHover={{ y: -8 }}
-                className="group relative bg-[#121212] rounded-2xl p-8 border border-zinc-800/60 overflow-hidden shadow-lg shadow-black/40 hover:border-zinc-500/30 transition-all duration-300 flex flex-col h-full"
+                variants={{ hidden: { opacity: 0, y: 30, scale: 0.97 }, visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } } }}
+                whileHover={{ y: -8, scale: 1.03, transition: { type: "spring", stiffness: 300, damping: 20 } }}
+                className="group relative bg-[#121212] rounded-2xl p-8 border border-zinc-800/60 overflow-hidden shadow-lg shadow-black/40 hover:border-zinc-400/40 hover:shadow-[0_8px_40px_rgba(161,161,170,0.1)] transition-all duration-300 flex flex-col h-full"
               >
                 <h3 className="text-2xl font-bold text-zinc-100 mb-3 group-hover:text-zinc-300 transition-colors">Spam Detection Using Naive Bayes</h3>
                 <p className="text-zinc-400 mb-6 text-sm leading-relaxed">
-                  Developed a machine learning model using the Naive Bayes algorithm to accurately classify emails and SMS messages as spam or ham.
+                  Built a spam classification system from scratch using pure Python without any machine learning libraries.
                 </p>
                 <div className="flex flex-wrap gap-2 mb-6">
                   <span className="bg-zinc-800/80 text-zinc-300 text-xs px-3 py-1 rounded-md">Python</span>
-                  <span className="bg-zinc-800/80 text-zinc-300 text-xs px-3 py-1 rounded-md">Scikit-Learn</span>
+                  <span className="bg-zinc-800/80 text-zinc-300 text-xs px-3 py-1 rounded-md">Probability</span>
                   <span className="bg-zinc-800/80 text-zinc-300 text-xs px-3 py-1 rounded-md">NLP</span>
                 </div>
                 <div className="mb-8">
                   <h4 className="text-zinc-200 text-sm font-semibold mb-3">Key Insights:</h4>
                   <ul className="space-y-2 text-sm text-zinc-400">
-                    <li className="flex items-start gap-2"><span className="text-zinc-300 mt-0.5">•</span> Achieved 95% accuracy in spam classification on a test dataset.</li>
-                    <li className="flex items-start gap-2"><span className="text-zinc-300 mt-0.5">•</span> Implemented TF-IDF vectorization for text feature extraction.</li>
+                    <li className="flex items-start gap-2"><span className="text-zinc-300 mt-0.5">•</span> Implemented Naive Bayes with Laplace smoothing</li>
+                    <li className="flex items-start gap-2"><span className="text-zinc-300 mt-0.5">•</span> Used log-space computation for numerical stability</li>
+                    <li className="flex items-start gap-2"><span className="text-zinc-300 mt-0.5">•</span> Classifies messages with probability-based scoring</li>
                   </ul>
                 </div>
                 <div className="flex items-center gap-4 mt-auto pt-4">
-                  <a href="https://github.com/nikhilydv1026" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm font-medium text-zinc-300 hover:text-white bg-zinc-800/50 hover:bg-zinc-700/50 px-4 py-2 rounded-lg transition-colors border border-white/5">
+                  <a href="https://github.com/nikhilydv1026/spam-detection-naive-bayes" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm font-medium text-zinc-300 hover:text-white bg-zinc-800/50 hover:bg-zinc-700/50 px-4 py-2 rounded-lg transition-colors border border-white/5">
                     <img src="/logo/github.png" alt="GitHub" className="w-5 h-5 invert" /> GitHub
                   </a>
                 </div>
@@ -475,25 +474,32 @@ export default function Home() {
         {/* Certifications Section */}
         <section id="certifications" className="py-24 bg-[#0a0a0a] border-t border-zinc-900/50">
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.15 }}
+            variants={{
+              hidden: { opacity: 0, y: 60 },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1], staggerChildren: 0.2 } },
+            }}
             className="max-w-6xl mx-auto px-6 lg:px-12"
           >
-            <div className="flex items-center gap-6 mb-16">
+            <motion.div
+              variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+              className="flex items-center gap-6 mb-16"
+            >
               <h2 className="text-3xl md:text-5xl font-bold bg-gradient-to-r from-blue-400 via-teal-400 to-emerald-400 bg-clip-text text-transparent">
                 Certifications
               </h2>
               <div className="h-px flex-1 bg-gradient-to-r from-zinc-800 to-transparent"></div>
-            </div>
+            </motion.div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {/* Python Certification */}
               <motion.div
-                whileHover={{ y: -8 }}
+                variants={{ hidden: { opacity: 0, y: 30, scale: 0.97 }, visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } } }}
+                whileHover={{ y: -8, scale: 1.03, transition: { type: "spring", stiffness: 300, damping: 20 } }}
                 onClick={() => setActiveCert({ title: "Data Analysis with Python", issuer: "IBM (Cognitive Class)", image: "/certificates/data analysis with python.png" })}
-                className="group relative bg-[#121212] rounded-2xl p-6 border border-zinc-800/60 overflow-hidden cursor-pointer shadow-lg shadow-black/40"
+                className="group relative bg-[#121212] rounded-2xl p-6 border border-zinc-800/60 overflow-hidden cursor-pointer shadow-lg shadow-black/40 hover:shadow-[0_8px_40px_rgba(59,130,246,0.15)] hover:border-blue-500/30"
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl mix-blend-overlay"></div>
                 <div className="relative aspect-[4/3] rounded-lg overflow-hidden mb-6 border border-zinc-800">
@@ -520,9 +526,10 @@ export default function Home() {
 
               {/* Data Analysis Cert */}
               <motion.div
-                whileHover={{ y: -8 }}
+                variants={{ hidden: { opacity: 0, y: 30, scale: 0.97 }, visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } } }}
+                whileHover={{ y: -8, scale: 1.03, transition: { type: "spring", stiffness: 300, damping: 20 } }}
                 onClick={() => setActiveCert({ title: "Introduction to Data Analytics", issuer: "Simplilearn SkillUp", image: "/certificates/introduction to data analysis.png" })}
-                className="group relative bg-[#121212] rounded-2xl p-6 border border-zinc-800/60 overflow-hidden cursor-pointer shadow-lg shadow-black/40"
+                className="group relative bg-[#121212] rounded-2xl p-6 border border-zinc-800/60 overflow-hidden cursor-pointer shadow-lg shadow-black/40 hover:shadow-[0_8px_40px_rgba(20,184,166,0.15)] hover:border-teal-500/30"
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-teal-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl mix-blend-overlay"></div>
                 <div className="relative aspect-[4/3] rounded-lg overflow-hidden mb-6 border border-zinc-800">
@@ -549,9 +556,10 @@ export default function Home() {
 
               {/* SQL Certification */}
               <motion.div
-                whileHover={{ y: -8 }}
+                variants={{ hidden: { opacity: 0, y: 30, scale: 0.97 }, visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } } }}
+                whileHover={{ y: -8, scale: 1.03, transition: { type: "spring", stiffness: 300, damping: 20 } }}
                 onClick={() => setActiveCert({ title: "SQL & Relational Databases", issuer: "Skill Course (Learn More Pro)", image: "/certificates/sql.png" })}
-                className="group relative bg-[#121212] rounded-2xl p-6 border border-zinc-800/60 overflow-hidden cursor-pointer shadow-lg shadow-black/40"
+                className="group relative bg-[#121212] rounded-2xl p-6 border border-zinc-800/60 overflow-hidden cursor-pointer shadow-lg shadow-black/40 hover:shadow-[0_8px_40px_rgba(16,185,129,0.15)] hover:border-emerald-500/30"
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl mix-blend-overlay"></div>
                 <div className="relative aspect-[4/3] rounded-lg overflow-hidden mb-6 border border-zinc-800">

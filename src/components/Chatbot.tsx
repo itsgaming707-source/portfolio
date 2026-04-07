@@ -10,12 +10,46 @@ type Message = {
 
 export default function Chatbot() {
   const [isOpen, setIsOpen] = useState(false);
+  const [hasInitialized, setHasInitialized] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   const chatRef = useRef<HTMLDivElement>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  // Restore state from localStorage on mount
+  useEffect(() => {
+    const aiState = localStorage.getItem("aiState");
+
+    if (aiState === "closed") {
+      // User explicitly closed it → stay closed
+      setIsOpen(false);
+      setHasInitialized(true);
+    } else if (aiState === "open") {
+      // Previously open → open instantly, no delay
+      setIsOpen(true);
+      setHasInitialized(true);
+    } else {
+      // First visit (no value) → smooth delayed open, then persist
+      const timer = setTimeout(() => {
+        setIsOpen(true);
+        setHasInitialized(true);
+        localStorage.setItem("aiState", "open");
+      }, 1200);
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
+  const handleOpen = () => {
+    setIsOpen(true);
+    localStorage.setItem("aiState", "open");
+  };
+
+  const handleClose = () => {
+    setIsOpen(false);
+    localStorage.setItem("aiState", "closed");
+  };
 
   // Auto scroll to bottom
   const scrollToBottom = () => {
@@ -29,7 +63,7 @@ export default function Chatbot() {
   // Close on ESC or outside click
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setIsOpen(false);
+      if (e.key === "Escape") handleClose();
     };
 
     const handleClickOutside = (e: MouseEvent) => {
@@ -38,7 +72,7 @@ export default function Chatbot() {
         chatRef.current &&
         !chatRef.current.contains(e.target as Node)
       ) {
-        setIsOpen(false);
+        handleClose();
       }
     };
 
@@ -117,7 +151,7 @@ export default function Chatbot() {
             exit={{ opacity: 0, scale: 0.8 }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            onClick={() => setIsOpen(true)}
+            onClick={handleOpen}
             className="fixed bottom-6 right-6 px-6 h-12 bg-gradient-to-b from-[#1a1a1a] to-black rounded-full flex items-center justify-center gap-2 text-[#D4AF37] shadow-[0_4px_20px_-4px_rgba(212,175,55,0.4)] hover:shadow-[0_8px_30px_-4px_rgba(212,175,55,0.6)] z-[100] transition-shadow border border-[#D4AF37]/50 hover:border-[#D4AF37]/80"
           >
             <span
@@ -136,10 +170,10 @@ export default function Chatbot() {
         {isOpen && (
           <motion.div
             ref={chatRef}
-            initial={{ opacity: 0, scale: 0.9, y: 20, originX: 1, originY: 1 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
+            initial={{ opacity: 0, x: 80, scale: 0.95 }}
+            animate={{ opacity: 1, x: 0, scale: 1 }}
+            exit={{ opacity: 0, x: 80, scale: 0.95 }}
+            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
             className="fixed bottom-5 right-5 w-[350px] max-w-[calc(100vw-40px)] h-[500px] max-h-[calc(100vh-40px)] z-[100] flex flex-col bg-[#131313]/90 backdrop-blur-xl rounded-2xl border border-white/10 shadow-[0_32px_64px_-12px_rgba(0,0,0,0.6)] overflow-hidden"
           >
             {/* Header */}
@@ -158,7 +192,7 @@ export default function Chatbot() {
                 </span>
               </div>
               <button
-                onClick={() => setIsOpen(false)}
+                onClick={handleClose}
                 className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/10 transition-colors text-gray-400 hover:text-white"
               >
                 <span className="material-symbols-outlined text-xl">close</span>

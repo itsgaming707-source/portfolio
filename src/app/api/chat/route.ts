@@ -29,9 +29,10 @@ Focus: Data Analysis, Data Cleaning, Visualization
 Goal: Turning data into business insights
 
 Projects:
-1. Sales Data Analysis Dashboard (Power BI) - Analyzed sales trends and KPIs, built interactive dashboard
-2. SQL Data Analysis Project - Used complex queries (JOIN, GROUP BY), extracted business insights
-3. Python EDA Project - Used Pandas, Matplotlib, cleaned and visualized data
+1. Blinkit Sales Analysis (Python EDA) - Performed end-to-end data cleaning & analysis on Blinkit sales data. Identified pricing vs visibility impact on sales. Found Tier 1 & 2 outlets outperform Tier 3. Used Python, Pandas, Matplotlib.
+2. Spam Detection System (Built from Scratch) - Built a Naive Bayes classifier without using ML libraries. Implemented probability calculations, Laplace smoothing & log-space computation from scratch. Classifies messages as spam/ham with confidence score. Used Python.
+3. Customer Shopping Behavior Analysis - End-to-end project using Python, SQL & Power BI. Identified high-value customers & buying patterns. Built interactive dashboard for business insights.
+4. Zepto Inventory Analysis (SQL) - Analyzed e-commerce inventory dataset using advanced SQL queries. Found top discounts, revenue trends & stock issues. Performed complex joins, aggregations and window functions for insights. Used PostgreSQL.
 
 Tools & Technologies:
 - SQL (MySQL, PostgreSQL)
@@ -93,31 +94,54 @@ He has strong knowledge of:
 - Exploratory Data Analysis (EDA)
 - Writing optimized SQL queries
 - Building dashboards in Power BI
+- Machine Learning fundamentals (Naive Bayes, classification)
 - Basic statistics for data insights
 
 He focuses on turning raw data into meaningful business insights.`,
-  "📊 View Nikhil's Projects": `Nikhil has worked on several data analysis projects, including:
+  "📊 View Nikhil's Projects": `📊 Nikhil has worked on multiple real-world data analysis projects:
 
-1. Sales Data Analysis Dashboard (Power BI)
-- Analyzed sales trends and KPIs
-- Built interactive dashboard
+🛒 1. Blinkit Sales Analysis (Python EDA)
+- Performed end-to-end data cleaning & analysis
+- Identified pricing vs visibility impact on sales
+- Found Tier 1 & 2 outlets outperform Tier 3
 
-2. SQL Data Analysis Project
-- Used complex queries (JOIN, GROUP BY)
-- Extracted business insights
+🚀 2. Spam Detection System (From Scratch)
+- Built Naive Bayes model without ML libraries
+- Implemented probability, Laplace smoothing & log-space computation
+- Classifies messages with confidence score
 
-3. Python EDA Project
-- Used Pandas, Matplotlib
-- Cleaned and visualized data
+🛍️ 3. Customer Shopping Behavior Analysis
+- End-to-end project using Python, SQL & Power BI
+- Identified high-value customers & buying patterns
+- Built interactive dashboard for business insights
 
-These projects demonstrate his ability to solve real-world problems using data.`,
-  "🧠 Explain a Project in Detail": `One of Nikhil's key projects is a Sales Data Analysis Dashboard.
+🛒 4. Zepto Inventory Analysis (SQL)
+- Analyzed e-commerce inventory dataset
+- Found top discounts, revenue trends & stock issues
+- Performed advanced SQL queries for insights
 
-Problem: Businesses were unable to track sales performance effectively.
-Approach: Cleaned raw data using Python, used SQL for extraction, built Power BI dashboard.
-Result: Identified top-performing products and improved decision-making.
+💡 These projects showcase strong skills in:
+Python • SQL • Power BI • Data Analysis • Business Insights`,
+  "🧠 Explain a Project in Detail": `Let me walk you through Nikhil's most impactful projects:
 
-This project shows his ability to convert raw data into actionable insights.`,
+🛒 Blinkit Sales Analysis:
+→ Problem: Understanding what drives sales across different outlet types
+→ Approach: Cleaned raw sales data using Python (Pandas), performed EDA with Matplotlib
+→ Key Finding: Tier 1 & 2 city outlets significantly outperform Tier 3. Pricing & product visibility directly impact sales volume.
+
+🚀 Spam Detection System (Built from Scratch):
+→ Problem: Classify messages as spam or ham without relying on ML libraries
+→ Approach: Implemented Naive Bayes algorithm from scratch — probability calculations, Laplace smoothing, and log-space computation
+→ Result: Successfully classifies messages with a confidence score, demonstrating deep understanding of ML fundamentals
+
+🛍️ Customer Shopping Behavior:
+→ End-to-end pipeline using Python + SQL + Power BI
+→ Segmented high-value customers and uncovered buying patterns
+→ Built an interactive dashboard for business decision-making
+
+🛒 Zepto Inventory Analysis:
+→ Used advanced SQL (JOINs, Window Functions, CTEs) on e-commerce inventory data
+→ Identified top discount categories, revenue trends, and stock management issues`,
   "🛠️ Tools & Technologies Nikhil Uses": `Nikhil works with the following tools:
 
 - SQL (MySQL, PostgreSQL)
