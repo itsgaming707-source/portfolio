@@ -688,7 +688,7 @@ export default function Home() {
 
             {/* LinkedIn Card */}
             <a
-              href="https://linkedin.com/in/nikhil-yadav-3abb51356"
+              href="https://www.linkedin.com/in/nikhilydv1026"
               target="_blank"
               rel="noopener noreferrer"
               className="group flex flex-col items-center p-8 bg-zinc-900/30 backdrop-blur-md border border-white/5 rounded-2xl transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_0_25px_rgba(10,102,194,0.15)] hover:border-[#0A66C2]/30 cursor-pointer"
@@ -698,7 +698,7 @@ export default function Home() {
               </div>
               <h3 className="text-lg font-semibold text-zinc-100 mb-1">LinkedIn</h3>
               <p className="text-zinc-400 text-sm font-medium group-hover:text-zinc-200 transition-colors">
-                nikhil-yadav-3abb51356
+                nikhilydv1026
               </p>
             </a>
 

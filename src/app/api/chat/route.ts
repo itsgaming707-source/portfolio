@@ -42,7 +42,7 @@ Tools & Technologies:
 
 Contact Information:
 - Email: nikhilydv1026@gmail.com
-- LinkedIn: https://www.linkedin.com/in/nikhil-yadav-3abb51356
+- LinkedIn: https://www.linkedin.com/in/nikhilydv1026
 - GitHub: https://github.com/nikhilydv1026
 He is open to Data Analyst roles and opportunities.
 
@@ -153,7 +153,7 @@ He uses these tools to clean, analyze, and visualize data effectively.`,
   "📞 Contact Nikhil": `You can contact Nikhil through:
 
 📧 Email: [nikhilydv1026@gmail.com](mailto:nikhilydv1026@gmail.com)
-💼 LinkedIn: [nikhil-yadav-3abb51356](https://www.linkedin.com/in/nikhil-yadav-3abb51356)
+💼 LinkedIn: [nikhilydv1026](https://www.linkedin.com/in/nikhilydv1026)
 💻 GitHub: [nikhilydv1026](https://github.com/nikhilydv1026)
 
 He is open to Data Analyst roles and opportunities.`
