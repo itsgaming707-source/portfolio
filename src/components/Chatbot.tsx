@@ -168,7 +168,7 @@ export default function Chatbot() {
             {/* Message Area */}
             <div className="flex-1 overflow-y-auto p-5 space-y-6 scrollbar-hide flex flex-col justify-start">
               {/* Auto Welcome Message */}
-              <div 
+              <div
                 className="flex flex-col gap-1.5 max-w-[85%] self-start group"
               >
                 <div className="bg-[#1c1b1b] border border-white/10 p-3 rounded-2xl rounded-tl-none relative shadow-sm">
@@ -183,7 +183,7 @@ export default function Chatbot() {
 
               {/* Quick Action Chips */}
               {messages.length === 0 && (
-                <div 
+                <div
                   className="flex flex-wrap gap-2 pt-2"
                 >
                   {quickActions.map((question, i) => (
@@ -198,16 +198,14 @@ export default function Chatbot() {
               {messages.map((msg, index) => (
                 <div
                   key={index}
-                  className={`flex flex-col gap-1.5 max-w-[85%] ${
-                    msg.role === "user" ? "self-end" : "self-start"
-                  } group`}
+                  className={`flex flex-col gap-1.5 max-w-[85%] ${msg.role === "user" ? "self-end" : "self-start"
+                    } group`}
                 >
                   <div
-                    className={`${
-                      msg.role === "user"
-                        ? "bg-blue-600 border border-blue-500 rounded-2xl rounded-tr-none"
-                        : "bg-[#1c1b1b] border border-white/10 rounded-2xl rounded-tl-none"
-                    } p-3 relative shadow-sm`}
+                    className={`${msg.role === "user"
+                      ? "bg-blue-600 border border-blue-500 rounded-2xl rounded-tr-none"
+                      : "bg-[#1c1b1b] border border-white/10 rounded-2xl rounded-tl-none"
+                      } p-3 relative shadow-sm`}
                   >
                     <p className={`leading-relaxed text-sm whitespace-pre-line ${msg.role === "user" ? "text-white" : "text-gray-200"}`}>
                       {msg.content.split(/(\[.*?\]\(.*?\)|https?:\/\/[^\s]+)/g).map((part, i) => {
@@ -262,7 +260,7 @@ export default function Chatbot() {
                   placeholder="Type a message..."
                   type="text"
                 />
-                <button 
+                <button
                   onClick={() => handleSendMessage(inputValue)}
                   disabled={!inputValue.trim() || isLoading}
                   className="w-8 h-8 shrink-0 bg-blue-500 hover:bg-blue-600 disabled:bg-blue-500/50 disabled:cursor-not-allowed rounded-lg flex items-center justify-center text-white shadow-lg transition-transform hover:scale-95 active:scale-90"

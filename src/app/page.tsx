@@ -23,7 +23,7 @@ export default function Home() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['home', 'about', 'skills', 'certifications', 'contact'];
+      const sections = ['home', 'about', 'projects', 'skills', 'certifications', 'contact'];
       let current = 'home';
 
       for (const sectionId of sections) {
@@ -39,6 +39,7 @@ export default function Home() {
       const tabNameMap: Record<string, string> = {
         home: "Home",
         about: "About",
+        projects: "Projects",
         skills: "Skills",
         certifications: "Certifications",
         contact: "Contact"
@@ -94,6 +95,7 @@ export default function Home() {
           >
             <a href="#home" onClick={() => setActiveTab('Home')} className={`cursor-pointer transition-colors ${activeTab === 'Home' ? 'text-blue-400 font-medium border-b border-blue-400/50 pb-1' : 'text-zinc-400 hover:text-zinc-100'}`}>Home</a>
             <a href="#about" onClick={() => setActiveTab('About')} className={`cursor-pointer transition-colors ${activeTab === 'About' ? 'text-blue-400 font-medium border-b border-blue-400/50 pb-1' : 'text-zinc-400 hover:text-zinc-100'}`}>About</a>
+            <a href="#projects" onClick={() => setActiveTab('Projects')} className={`cursor-pointer transition-colors ${activeTab === 'Projects' ? 'text-blue-400 font-medium border-b border-blue-400/50 pb-1' : 'text-zinc-400 hover:text-zinc-100'}`}>Projects</a>
             <a href="#skills" onClick={() => setActiveTab('Skills')} className={`cursor-pointer transition-colors ${activeTab === 'Skills' ? 'text-blue-400 font-medium border-b border-blue-400/50 pb-1' : 'text-zinc-400 hover:text-zinc-100'}`}>Skills</a>
             <a href="#certifications" onClick={() => setActiveTab('Certifications')} className={`cursor-pointer transition-colors ${activeTab === 'Certifications' ? 'text-blue-400 font-medium border-b border-blue-400/50 pb-1' : 'text-zinc-400 hover:text-zinc-100'}`}>Certifications</a>
             <a href="#contact" onClick={() => setActiveTab('Contact')} className={`cursor-pointer transition-colors ${activeTab === 'Contact' ? 'text-blue-400 font-medium border-b border-blue-400/50 pb-1' : 'text-zinc-400 hover:text-zinc-100'}`}>Contact</a>
@@ -124,6 +126,7 @@ export default function Home() {
               <div className="flex flex-col space-y-5 px-6 py-8 font-sans tracking-tight text-base">
                 <a href="#home" onClick={() => handleMobileNavClick('Home')} className={`cursor-pointer transition-colors ${activeTab === 'Home' ? 'text-blue-400 font-medium' : 'text-zinc-400 hover:text-zinc-100'}`}>Home</a>
                 <a href="#about" onClick={() => handleMobileNavClick('About')} className={`cursor-pointer transition-colors ${activeTab === 'About' ? 'text-blue-400 font-medium' : 'text-zinc-400 hover:text-zinc-100'}`}>About</a>
+                <a href="#projects" onClick={() => handleMobileNavClick('Projects')} className={`cursor-pointer transition-colors ${activeTab === 'Projects' ? 'text-blue-400 font-medium' : 'text-zinc-400 hover:text-zinc-100'}`}>Projects</a>
                 <a href="#skills" onClick={() => handleMobileNavClick('Skills')} className={`cursor-pointer transition-colors ${activeTab === 'Skills' ? 'text-blue-400 font-medium' : 'text-zinc-400 hover:text-zinc-100'}`}>Skills</a>
                 <a href="#certifications" onClick={() => handleMobileNavClick('Certifications')} className={`cursor-pointer transition-colors ${activeTab === 'Certifications' ? 'text-blue-400 font-medium' : 'text-zinc-400 hover:text-zinc-100'}`}>Certifications</a>
                 <a href="#contact" onClick={() => handleMobileNavClick('Contact')} className={`cursor-pointer transition-colors ${activeTab === 'Contact' ? 'text-blue-400 font-medium' : 'text-zinc-400 hover:text-zinc-100'}`}>Contact</a>
@@ -224,7 +227,157 @@ export default function Home() {
           </motion.div>
         </section>
 
-        {/* Technical Arsenal Section */}
+        {/* Projects Section */}
+        <section id="projects" className="py-32 px-6 bg-[#0a0a0a] border-t border-zinc-900/50">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+            variants={{
+              hidden: { opacity: 0, y: 40 },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut", staggerChildren: 0.15 } },
+            }}
+            className="max-w-6xl mx-auto"
+          >
+            <div className="flex items-center gap-6 mb-16">
+              <h2 className="text-3xl md:text-5xl font-bold bg-gradient-to-r from-blue-400 via-teal-400 to-emerald-400 bg-clip-text text-transparent">
+                Projects
+              </h2>
+              <div className="h-px flex-1 bg-gradient-to-r from-zinc-800 to-transparent"></div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {/* Project 1 - Blinkit */}
+              <motion.div
+                variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+                whileHover={{ y: -8 }}
+                className="group relative bg-[#121212] rounded-2xl p-8 border border-blue-500/30 overflow-hidden shadow-lg shadow-black/40 hover:shadow-[0_0_30px_rgba(59,130,246,0.15)] transition-all duration-300 flex flex-col h-full"
+              >
+                <div className="absolute top-0 right-0 p-4">
+                  <span className="bg-blue-500/10 text-blue-400 text-xs font-bold px-3 py-1 rounded-full border border-blue-500/20 shadow-[0_0_10px_rgba(59,130,246,0.2)]">Featured</span>
+                </div>
+                <h3 className="text-2xl font-bold text-zinc-100 mb-3 group-hover:text-blue-400 transition-colors pr-20">Blinkit Sales Analysis</h3>
+                <p className="text-zinc-400 mb-6 text-sm leading-relaxed">
+                  A comprehensive analysis of Blinkit sales data to uncover purchasing trends and optimize inventory distribution across various outlet types.
+                </p>
+                <div className="flex flex-wrap gap-2 mb-6">
+                  <span className="bg-zinc-800/80 text-zinc-300 text-xs px-3 py-1 rounded-md">Power BI</span>
+                  <span className="bg-zinc-800/80 text-zinc-300 text-xs px-3 py-1 rounded-md">Excel</span>
+                  <span className="bg-zinc-800/80 text-zinc-300 text-xs px-3 py-1 rounded-md">Data Modeling</span>
+                </div>
+                <div className="mb-8">
+                  <h4 className="text-zinc-200 text-sm font-semibold mb-3">Key Insights:</h4>
+                  <ul className="space-y-2 text-sm text-zinc-400">
+                    <li className="flex items-start gap-2"><span className="text-blue-400 mt-0.5">•</span> Identified top-performing product categories driving 40% of overall sales.</li>
+                    <li className="flex items-start gap-2"><span className="text-blue-400 mt-0.5">•</span> Analyzed sales across different tier cities, highlighting Tier 3 growth.</li>
+                    <li className="flex items-start gap-2"><span className="text-blue-400 mt-0.5">•</span> Developed an interactive dashboard for real-time outlet performance tracking.</li>
+                  </ul>
+                </div>
+                <div className="flex items-center gap-4 mt-auto pt-4">
+                  <a href="https://github.com/nikhilydv1026" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm font-medium text-zinc-300 hover:text-white bg-zinc-800/50 hover:bg-zinc-700/50 px-4 py-2 rounded-lg transition-colors border border-white/5">
+                    <img src="/logo/github.png" alt="GitHub" className="w-5 h-5 invert" /> GitHub
+                  </a>
+                  <a href="#" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm font-medium text-zinc-300 hover:text-blue-400 px-4 py-2 rounded-lg transition-colors border border-transparent hover:border-blue-500/30">
+                     <span className="material-symbols-outlined text-[20px]">open_in_new</span> Dashboard
+                  </a>
+                </div>
+              </motion.div>
+
+              {/* Project 2 - Customer Analytics */}
+              <motion.div
+                variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+                whileHover={{ y: -8 }}
+                className="group relative bg-[#121212] rounded-2xl p-8 border border-teal-500/30 overflow-hidden shadow-lg shadow-black/40 hover:shadow-[0_0_30px_rgba(20,184,166,0.15)] transition-all duration-300 flex flex-col h-full"
+              >
+                <div className="absolute top-0 right-0 p-4">
+                  <span className="bg-teal-500/10 text-teal-400 text-xs font-bold px-3 py-1 rounded-full border border-teal-500/20 shadow-[0_0_10px_rgba(20,184,166,0.2)]">Featured</span>
+                </div>
+                <h3 className="text-2xl font-bold text-zinc-100 mb-3 group-hover:text-teal-400 transition-colors pr-20">Customer Analytics Project</h3>
+                <p className="text-zinc-400 mb-6 text-sm leading-relaxed">
+                  In-depth analysis of customer behavior and segmentation to enhance retention strategies and personalize marketing campaigns.
+                </p>
+                <div className="flex flex-wrap gap-2 mb-6">
+                  <span className="bg-zinc-800/80 text-zinc-300 text-xs px-3 py-1 rounded-md">Python</span>
+                  <span className="bg-zinc-800/80 text-zinc-300 text-xs px-3 py-1 rounded-md">Pandas</span>
+                  <span className="bg-zinc-800/80 text-zinc-300 text-xs px-3 py-1 rounded-md">Matplotlib</span>
+                </div>
+                <div className="mb-8">
+                  <h4 className="text-zinc-200 text-sm font-semibold mb-3">Key Insights:</h4>
+                  <ul className="space-y-2 text-sm text-zinc-400">
+                    <li className="flex items-start gap-2"><span className="text-teal-400 mt-0.5">•</span> Segmented users into high, medium, and low value cohorts.</li>
+                    <li className="flex items-start gap-2"><span className="text-teal-400 mt-0.5">•</span> Discovered correlation between engagement frequency and churn rate.</li>
+                    <li className="flex items-start gap-2"><span className="text-teal-400 mt-0.5">•</span> Created predictive models for customer lifetime value estimation.</li>
+                  </ul>
+                </div>
+                <div className="flex items-center gap-4 mt-auto pt-4">
+                  <a href="https://github.com/nikhilydv1026" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm font-medium text-zinc-300 hover:text-white bg-zinc-800/50 hover:bg-zinc-700/50 px-4 py-2 rounded-lg transition-colors border border-white/5">
+                    <img src="/logo/github.png" alt="GitHub" className="w-5 h-5 invert" /> GitHub
+                  </a>
+                </div>
+              </motion.div>
+
+              {/* Project 3 - Zepto */}
+              <motion.div
+                variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+                whileHover={{ y: -8 }}
+                className="group relative bg-[#121212] rounded-2xl p-8 border border-zinc-800/60 overflow-hidden shadow-lg shadow-black/40 hover:border-zinc-500/30 transition-all duration-300 flex flex-col h-full"
+              >
+                <h3 className="text-2xl font-bold text-zinc-100 mb-3 group-hover:text-zinc-300 transition-colors">Zepto SQL Data Analysis</h3>
+                <p className="text-zinc-400 mb-6 text-sm leading-relaxed">
+                  Utilized advanced SQL queries to analyze large datasets from Zepto, extracting actionable business metrics regarding delivery times and order volumes.
+                </p>
+                <div className="flex flex-wrap gap-2 mb-6">
+                  <span className="bg-zinc-800/80 text-zinc-300 text-xs px-3 py-1 rounded-md">SQL</span>
+                  <span className="bg-zinc-800/80 text-zinc-300 text-xs px-3 py-1 rounded-md">PostgreSQL</span>
+                  <span className="bg-zinc-800/80 text-zinc-300 text-xs px-3 py-1 rounded-md">Data Cleaning</span>
+                </div>
+                <div className="mb-8">
+                  <h4 className="text-zinc-200 text-sm font-semibold mb-3">Key Insights:</h4>
+                  <ul className="space-y-2 text-sm text-zinc-400">
+                    <li className="flex items-start gap-2"><span className="text-zinc-300 mt-0.5">•</span> Optimized complex queries reducing execution time by 30%.</li>
+                    <li className="flex items-start gap-2"><span className="text-zinc-300 mt-0.5">•</span> Uncovered peak ordering hours leading to better delivery personnel allocation.</li>
+                  </ul>
+                </div>
+                <div className="flex items-center gap-4 mt-auto pt-4">
+                  <a href="https://github.com/nikhilydv1026" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm font-medium text-zinc-300 hover:text-white bg-zinc-800/50 hover:bg-zinc-700/50 px-4 py-2 rounded-lg transition-colors border border-white/5">
+                    <img src="/logo/github.png" alt="GitHub" className="w-5 h-5 invert" /> GitHub
+                  </a>
+                </div>
+              </motion.div>
+
+              {/* Project 4 - Spam Detection */}
+              <motion.div
+                variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+                whileHover={{ y: -8 }}
+                className="group relative bg-[#121212] rounded-2xl p-8 border border-zinc-800/60 overflow-hidden shadow-lg shadow-black/40 hover:border-zinc-500/30 transition-all duration-300 flex flex-col h-full"
+              >
+                <h3 className="text-2xl font-bold text-zinc-100 mb-3 group-hover:text-zinc-300 transition-colors">Spam Detection Using Naive Bayes</h3>
+                <p className="text-zinc-400 mb-6 text-sm leading-relaxed">
+                  Developed a machine learning model using the Naive Bayes algorithm to accurately classify emails and SMS messages as spam or ham.
+                </p>
+                <div className="flex flex-wrap gap-2 mb-6">
+                  <span className="bg-zinc-800/80 text-zinc-300 text-xs px-3 py-1 rounded-md">Python</span>
+                  <span className="bg-zinc-800/80 text-zinc-300 text-xs px-3 py-1 rounded-md">Scikit-Learn</span>
+                  <span className="bg-zinc-800/80 text-zinc-300 text-xs px-3 py-1 rounded-md">NLP</span>
+                </div>
+                <div className="mb-8">
+                  <h4 className="text-zinc-200 text-sm font-semibold mb-3">Key Insights:</h4>
+                  <ul className="space-y-2 text-sm text-zinc-400">
+                    <li className="flex items-start gap-2"><span className="text-zinc-300 mt-0.5">•</span> Achieved 95% accuracy in spam classification on a test dataset.</li>
+                    <li className="flex items-start gap-2"><span className="text-zinc-300 mt-0.5">•</span> Implemented TF-IDF vectorization for text feature extraction.</li>
+                  </ul>
+                </div>
+                <div className="flex items-center gap-4 mt-auto pt-4">
+                  <a href="https://github.com/nikhilydv1026" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm font-medium text-zinc-300 hover:text-white bg-zinc-800/50 hover:bg-zinc-700/50 px-4 py-2 rounded-lg transition-colors border border-white/5">
+                    <img src="/logo/github.png" alt="GitHub" className="w-5 h-5 invert" /> GitHub
+                  </a>
+                </div>
+              </motion.div>
+            </div>
+          </motion.div>
+        </section>
+
+        {/* Technical Skills Section */}
         <section id="skills" className="py-32 px-6 bg-[#121212] border-t border-zinc-900/50">
           <motion.div
             initial="hidden"
@@ -241,7 +394,7 @@ export default function Home() {
               className="flex flex-col items-center justify-center mt-6 mb-20"
             >
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight bg-gradient-to-r from-[#4dabf7] via-cyan-400 to-teal-400 bg-clip-text text-transparent drop-shadow-[0_0_15px_rgba(77,171,247,0.3)] pb-2">
-                Technical Arsenal
+                Technical Skills
               </h2>
             </motion.div>
 
