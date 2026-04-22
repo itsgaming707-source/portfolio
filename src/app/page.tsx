@@ -157,10 +157,10 @@ export default function Home() {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className="relative mb-10 group"
+              className="relative mb-6 -mt-6 group"
             >
               <div className="profile-wrapper">
-                <div className="w-40 h-40 rounded-full p-[2px] bg-gradient-to-b from-[#FFD700] via-[#C9A44C] to-[#eeca59] shadow-[0_0_25px_rgba(201,164,76,0.3)] relative transition-all duration-500 group-hover:scale-[1.05] group-hover:shadow-[0_0_40px_rgba(255,215,0,0.5)]">
+                <div className="w-44 h-44 md:w-48 md:h-48 rounded-full p-[2px] bg-gradient-to-b from-[#FFD700] via-[#C9A44C] to-[#eeca59] shadow-[0_0_25px_rgba(201,164,76,0.3)] relative transition-all duration-500 group-hover:scale-[1.05] group-hover:shadow-[0_0_40px_rgba(255,215,0,0.5)]">
                   <div className="w-full h-full rounded-full overflow-hidden relative bg-[#121212]">
                     <Image
                       alt="Nikhil Yadav Profile"
@@ -725,6 +725,40 @@ export default function Home() {
         </motion.div>
       </section>
 
+      {/* SEO Footer */}
+      <footer className="py-8 px-6 bg-black border-t border-zinc-900/50">
+        <div className="max-w-5xl mx-auto flex flex-col items-center gap-4">
+          <div className="flex items-center gap-6 text-sm text-zinc-500">
+            <a
+              href="https://www.linkedin.com/in/nikhilydv1026"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-blue-400 transition-colors"
+            >
+              Nikhil Yadav LinkedIn
+            </a>
+            <span className="text-zinc-700">·</span>
+            <a
+              href="https://github.com/nikhilydv1026"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-zinc-200 transition-colors"
+            >
+              Nikhil Yadav GitHub
+            </a>
+            <span className="text-zinc-700">·</span>
+            <a
+              href="/nikhil-yadav"
+              className="hover:text-blue-400 transition-colors"
+            >
+              About Nikhil Yadav
+            </a>
+          </div>
+          <p className="text-xs text-zinc-600">
+            © {new Date().getFullYear()} Nikhil Yadav (Nikhil Ydv). All rights reserved.
+          </p>
+        </div>
+      </footer>
 
     </>
   );
