@@ -1,30 +1,88 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ── Theme Variables ── */
+:root,
+[data-theme="dark"] {
+  --bg-primary: #050505;
+  --bg-secondary: #0a0a0a;
+  --bg-card: #121212;
+  --bg-card-hover: #1a1a1a;
+  --text-primary: #e2e2e2;
+  --text-secondary: #a1a1aa;
+  --text-muted: #71717a;
+  --border-color: rgba(255, 255, 255, 0.05);
+  --border-color-hover: rgba(255, 255, 255, 0.1);
+  --nav-bg: rgba(0, 0, 0, 0.4);
+  --nav-border: rgba(255, 255, 255, 0.05);
+  --card-border: rgba(63, 63, 70, 0.4);
+  --card-shadow: rgba(0, 0, 0, 0.4);
+  --pill-bg: rgba(39, 39, 42, 0.8);
+  --pill-text: #d4d4d8;
+  --section-border: rgba(39, 39, 42, 0.5);
+  --footer-bg: #000000;
+  --selection-bg: rgba(173, 198, 255, 0.3);
+  --selection-text: #adc6ff;
+  --background: #0a0a0a;
+  --foreground: #ededed;
+}
+
+[data-theme="light"] {
+  --bg-primary: #fdfcfb;
+  --bg-secondary: #fdfcfb;
+  --bg-card: #ffffff;
+  --bg-card-hover: #faf8f6;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+  --border-color: rgba(15, 23, 42, 0.08);
+  --border-color-hover: rgba(15, 23, 42, 0.15);
+  --nav-bg: rgba(255, 253, 251, 0.72);
+  --nav-border: rgba(15, 23, 42, 0.06);
+  --card-border: rgba(15, 23, 42, 0.08);
+  --card-shadow: rgba(15, 23, 42, 0.05);
+  --pill-bg: rgba(241, 245, 249, 0.9);
+  --pill-text: #475569;
+  --section-border: rgba(15, 23, 42, 0.06);
+  --footer-bg: #faf8f6;
+  --selection-bg: rgba(225, 29, 72, 0.2);
+  --selection-text: #e11d48;
+  --background: #fdfcfb;
+  --foreground: #0f172a;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-inter);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 html {
   scroll-behavior: smooth;
 }
 
+html, body {
+  transition: background-color 0.6s ease, color 0.6s ease, background 0.6s ease;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ── Smooth theme transition for all elements ── */
+*,
+*::before,
+*::after {
+  transition-property: background-color, background, color, border-color, box-shadow, fill, stroke;
+  transition-duration: 0.6s;
+  transition-timing-function: ease;
+}
+
+/* Preserve motion-based animations — only override theme-related properties */
+a, button, [class*="hover:"], [class*="group-hover:"] {
+  transition-property: background-color, background, color, border-color, box-shadow, fill, stroke, transform, opacity;
+  transition-duration: 0.6s, 0.6s, 0.6s, 0.6s, 0.6s, 0.6s, 0.6s, 0.3s, 0.3s;
+  transition-timing-function: ease;
 }
