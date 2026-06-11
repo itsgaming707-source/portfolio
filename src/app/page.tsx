@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Typed from "typed.js";
-import { motion, AnimatePresence, useMotionValue, useMotionTemplate } from "framer-motion";
+import { motion, AnimatePresence, useMotionValue, useMotionTemplate, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import ParticleNetwork from "@/components/ParticleNetwork";
 import { useTheme } from "@/context/ThemeContext";
@@ -42,6 +42,52 @@ export default function Home() {
     mouseX.set(clientX - left);
     mouseY.set(clientY - top);
   }
+
+  const stickyContainerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: stickyContainerRef,
+    offset: ["start start", "end start"]
+  });
+
+  const [targetX, setTargetX] = useState(0);
+  const [isMobile, setIsMobile] = useState(true);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const profileScale = useTransform(scrollYProgress, (p) => {
+    if (typeof window === 'undefined') return 1;
+    const progress = Math.min(p / 0.6, 1);
+    const ease = progress * progress * (3 - 2 * progress);
+    return window.innerWidth < 768 ? 1 - (ease * 0.3) : 1 - (ease * 0.1); // Scales down slightly so About size stays the same
+  });
+
+  const profileX = useTransform(scrollYProgress, (p) => {
+    if (typeof window === 'undefined') return 0;
+    const w = window.innerWidth;
+    let targetX = 0;
+    if (w >= 1024) {
+      targetX = -(w / 2) + 260; // Always exactly 260px from the left edge of the screen
+    } else if (w >= 768) {
+      targetX = -w * 0.38; // Responsive for medium screens
+    }
+    const progress = Math.min(p / 0.6, 1);
+    const ease = progress * progress * (3 - 2 * progress);
+    return ease * targetX;
+  });
+
+  const profileOpacity = useTransform(scrollYProgress, (p) => {
+    if (typeof window === 'undefined') return 1;
+    if (window.innerWidth >= 768) return 1;
+    const progress = Math.min(p / 0.4, 1);
+    return 1 - progress;
+  });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -209,61 +255,34 @@ export default function Home() {
       </nav>
 
       <main>
-        {/* Hero Section */}
-        <section
-          id="home"
-          className="relative min-h-[100svh] flex flex-col items-center justify-center pt-32 pb-24 md:pt-24 md:pb-16 px-4 md:px-6 overflow-hidden"
-          style={{ background: isDark ? "#050505" : "linear-gradient(135deg, #FFF7F8 0%, #FFFFFF 35%, #FFF5F7 70%, #FFFFFF 100%)", transition: "background 0.4s ease" }}
-          onMouseMove={handleMouseMove}
-        >
-          {/* Particle Network Background */}
-          <ParticleNetwork theme={theme} />
+        <div className="relative">
+          {/* Sticky Profile Image */}
+          <div ref={stickyContainerRef} className="absolute inset-x-0 top-0 h-[calc(100svh+220px)] md:h-[calc(100svh+280px)] pointer-events-none z-30">
+            <div className="sticky top-[calc(22vh+56px)] md:top-[calc(28vh+56px)] flex justify-center w-full h-0">
+              <motion.div
+                style={{ x: profileX, scale: profileScale, opacity: profileOpacity }}
+                className="pointer-events-auto relative flex justify-center items-center origin-center group cursor-pointer"
+              >
+                {/* Background Glow */}
+                <div
+                  className="absolute rounded-full transition-transform duration-500 pointer-events-none"
+                  style={{
+                    width: "150%",
+                    height: "150%",
+                    background: isDark
+                      ? "radial-gradient(circle, rgba(244,208,63,0.2) 0%, rgba(220,201,163,0.08) 40%, transparent 60%)"
+                      : "radial-gradient(circle, rgba(225,29,72,0.15) 0%, rgba(251,113,133,0.08) 35%, rgba(253,164,175,0.03) 55%, transparent 65%)",
+                    transform: isDark ? "scale(1.8)" : "scale(2.2)",
+                    filter: isDark ? "blur(15px)" : "blur(20px)",
+                    zIndex: -1,
+                  }}
+                />
 
-          {/* Blue/Rose gradient overlay */}
-          <div
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              background: isDark
-                ? "radial-gradient(circle at center, rgba(14,165,233,0.12) 0%, transparent 60%)"
-                : "radial-gradient(circle at center, rgba(225,29,72,0.07) 0%, rgba(251,113,133,0.03) 40%, transparent 65%)",
-              zIndex: 2,
-            }}
-          />
-
-          {/* Interactive Mouse Glow */}
-          <motion.div
-            className="pointer-events-none absolute inset-0"
-            style={{
-              background: backgroundGlow,
-              zIndex: 3,
-            }}
-          />
-
-          <div className="relative z-10 flex flex-col items-center w-full" style={{ zIndex: 10 }}>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              className="relative mb-6 -mt-6 group"
-            >
-              {/* Warm gold glow (dark) / Rose red glow (light) behind profile image */}
-              <div
-                className="absolute inset-0 rounded-full transition-transform duration-500"
-                style={{
-                  background: isDark
-                    ? "radial-gradient(circle, rgba(244,208,63,0.2) 0%, rgba(220,201,163,0.08) 40%, transparent 60%)"
-                    : "radial-gradient(circle, rgba(225,29,72,0.15) 0%, rgba(251,113,133,0.08) 35%, rgba(253,164,175,0.03) 55%, transparent 65%)",
-                  transform: isDark ? "scale(1.8)" : "scale(2.2)",
-                  filter: isDark ? "blur(15px)" : "blur(20px)",
-                  zIndex: -1,
-                }}
-              />
-              <div className="profile-wrapper">
-                <div className={`w-[180px] h-[180px] sm:w-[200px] sm:h-[200px] md:w-[220px] md:h-[220px] rounded-full p-[2px] relative transition-all duration-500 group-hover:scale-[1.05] ${
-                  isDark
-                    ? "bg-gradient-to-b from-[#FFD700] via-[#F4D03F] to-[#eeca59] shadow-[0_0_25px_rgba(244,208,63,0.25)] group-hover:shadow-[0_0_40px_rgba(244,208,63,0.45)]"
-                    : "bg-gradient-to-b from-[#E11D48] via-[#FB7185] to-[#BE123C] shadow-[0_0_25px_rgba(225,29,72,0.25)] group-hover:shadow-[0_0_40px_rgba(225,29,72,0.45)]"
-                }`}>
+                {/* Profile Image Wrapper */}
+                <div className={`w-[200px] h-[200px] sm:w-[240px] sm:h-[240px] md:w-[280px] md:h-[280px] rounded-full p-[2px] relative transition-all duration-500 group-hover:scale-[1.05] ${isDark
+                  ? "bg-gradient-to-b from-[#FFD700] via-[#F4D03F] to-[#eeca59] shadow-[0_0_25px_rgba(244,208,63,0.25)] group-hover:shadow-[0_0_40px_rgba(244,208,63,0.45)]"
+                  : "bg-gradient-to-b from-[#E11D48] via-[#FB7185] to-[#BE123C] shadow-[0_0_25px_rgba(225,29,72,0.25)] group-hover:shadow-[0_0_40px_rgba(225,29,72,0.45)]"
+                  }`}>
                   <div className={`w-full h-full rounded-full overflow-hidden relative ${isDark ? 'bg-[#121212]' : 'bg-white'}`}>
                     <Image
                       alt="Nikhil Yadav Profile"
@@ -274,61 +293,121 @@ export default function Home() {
                     />
                   </div>
                 </div>
-              </div>
-            </motion.div>
-
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className={`text-[clamp(2.5rem,8vw,4rem)] md:text-7xl font-extrabold tracking-tight mb-3 md:mb-4 text-center inline-block text-transparent bg-clip-text max-w-[90vw] overflow-hidden ${isDark ? 'bg-gradient-to-r from-[#d6c1a3] via-[#f5e6c8] to-[#c7a77a]' : 'bg-gradient-to-r from-[#0F172A] via-[#E11D48] to-[#0F172A]'}`}
-            >
-              <span ref={el} className="px-2"></span>
-            </motion.h1>
-
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="h-8"
-            >
-              <p className={`font-semibold tracking-widest md:tracking-[0.25em] uppercase text-[14px] sm:text-[15px] md:text-base text-center leading-relaxed md:leading-normal max-w-[280px] sm:max-w-md md:max-w-full mx-auto ${isDark ? 'text-[#4dabf7]' : 'text-[#e11d48]'}`}>
-                Data Analyst | SQL | Python | Power BI
-              </p>
-            </motion.div>
-
-
+              </motion.div>
+            </div>
           </div>
-        </section>
 
-        {/* About Section */}
-        <section id="about" className="pt-20 pb-32 px-6 transition-colors duration-400" style={{ background: isDark ? '#0a0a0a' : 'linear-gradient(180deg, #FFFFFF 0%, #FFF7F8 50%, #FFFFFF 100%)' }}>
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={{
-              hidden: { opacity: 0, y: 40 },
-              visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut", staggerChildren: 0.15 } },
-            }}
-            className="max-w-2xl mx-auto text-center"
+          {/* Hero Section */}
+          <section
+            id="home"
+            className="relative min-h-[100svh] flex flex-col items-center pt-[22vh] md:pt-[28vh] px-4 md:px-6 overflow-hidden"
+            style={{ background: isDark ? "#000000" : "linear-gradient(135deg, #FFF7F8 0%, #FFFFFF 35%, #FFF5F7 70%, #FFFFFF 100%)", transition: "background 0.4s ease" }}
+            onMouseMove={handleMouseMove}
           >
-            <motion.h2 variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className={`text-4xl md:text-5xl font-extrabold tracking-tight mb-10 ${isDark ? 'text-zinc-100' : 'text-[#0f172a]'}`}>
-              About Me
-            </motion.h2>
-            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className={`space-y-4 leading-snug text-base md:text-lg font-light md:text-center text-left ${isDark ? 'text-zinc-300' : 'text-slate-600'}`}>
-              <p>
-                I&apos;m Nikhil Yadav, a BCA 2nd year student and an aspiring Data Analyst. I work with SQL, Python, and Power BI to understand data and find useful insights.
-              </p>
-              <p>
-                I enjoy solving problems using data and creating simple dashboards that make information easy to understand. I&apos;m currently focused on building my skills through practice and real-world projects.
-              </p>
-              <p>
-                I&apos;m looking for opportunities to learn, grow, and gain hands-on experience in data analytics.
-              </p>
+            {/* Particle Network Background */}
+            <ParticleNetwork theme={theme} />
+
+            {/* Blue/Rose gradient overlay */}
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                background: isDark
+                  ? "radial-gradient(circle at center, rgba(14,165,233,0.05) 0%, transparent 60%)"
+                  : "radial-gradient(circle at center, rgba(225,29,72,0.07) 0%, rgba(251,113,133,0.03) 40%, transparent 65%)",
+                zIndex: 2,
+              }}
+            />
+
+            {/* Interactive Mouse Glow */}
+            <motion.div
+              className="pointer-events-none absolute inset-0"
+              style={{
+                background: backgroundGlow,
+                zIndex: 3,
+              }}
+            />
+
+            <div className="relative z-10 flex flex-col items-center w-full" style={{ zIndex: 10 }}>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                className="relative mt-[56px] -mb-[56px] group"
+              >
+                <div className="profile-wrapper w-[200px] h-[200px] sm:w-[240px] sm:h-[240px] md:w-[280px] md:h-[280px] pointer-events-none opacity-0" />
+              </motion.div>
+
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className={`text-[clamp(2.5rem,8vw,4rem)] md:text-7xl font-extrabold tracking-tight mb-3 md:mb-4 text-center inline-block text-transparent bg-clip-text max-w-[90vw] overflow-hidden ${isDark ? 'bg-gradient-to-r from-[#d6c1a3] via-[#f5e6c8] to-[#c7a77a]' : 'bg-gradient-to-r from-[#0F172A] via-[#E11D48] to-[#0F172A]'}`}
+              >
+                <span ref={el} className="px-2"></span>
+              </motion.h1>
+
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                className="h-8"
+              >
+                <p className={`font-semibold tracking-widest md:tracking-[0.25em] uppercase text-[14px] sm:text-[15px] md:text-base text-center leading-relaxed md:leading-normal max-w-[280px] sm:max-w-md md:max-w-full mx-auto ${isDark ? 'text-[#4dabf7]' : 'text-[#e11d48]'}`}>
+                  Data Analyst | SQL | Python | Power BI
+                </p>
+              </motion.div>
+            </div>
+
+            {/* Scroll Down Indicator */}
+            <motion.a
+              href="#about"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.5, duration: 1 }}
+              className={`absolute bottom-8 md:bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 cursor-pointer z-20 ${isDark ? 'text-zinc-500 hover:text-blue-400' : 'text-slate-400 hover:text-rose-500'} transition-colors duration-300`}
+              onClick={() => setActiveTab('About')}
+            >
+              <span className="text-[10px] tracking-[0.2em] uppercase font-medium">Scroll</span>
+              <motion.div
+                animate={{ y: [0, 8, 0] }}
+                transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                </svg>
+              </motion.div>
+            </motion.a>
+          </section>
+
+          {/* About Section */}
+          <section id="about" className={`relative py-28 md:py-32 px-6 transition-colors duration-400 border-t ${isDark ? 'border-white/5' : 'border-slate-100/50'}`} style={{ background: isDark ? '#071122' : 'linear-gradient(180deg, #FFFFFF 0%, #FFF7F8 50%, #FFFFFF 100%)' }}>
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+              variants={{
+                hidden: { opacity: 0, y: -60 },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut", staggerChildren: 0.15 } },
+              }}
+              className="max-w-2xl mx-auto text-center"
+            >
+              <motion.h2 variants={{ hidden: { opacity: 0, y: -20 }, visible: { opacity: 1, y: 0 } }} className={`text-4xl md:text-5xl font-extrabold tracking-tight mb-10 ${isDark ? 'text-zinc-100' : 'text-[#0f172a]'}`}>
+                About Me
+              </motion.h2>
+              <motion.div variants={{ hidden: { opacity: 0, y: -20 }, visible: { opacity: 1, y: 0 } }} className={`space-y-4 leading-snug text-base md:text-lg font-light text-center ${isDark ? 'text-zinc-300' : 'text-slate-600'}`}>
+                <p>
+                  I&apos;m Nikhil Yadav, a BCA 2nd year student and an aspiring Data Analyst. I work with SQL, Python, and Power BI to understand data and find useful insights.
+                </p>
+                <p>
+                  I enjoy solving problems using data and creating simple dashboards that make information easy to understand. I&apos;m currently focused on building my skills through practice and real-world projects.
+                </p>
+                <p>
+                  I&apos;m looking for opportunities to learn, grow, and gain hands-on experience in data analytics.
+                </p>
+              </motion.div>
             </motion.div>
-          </motion.div>
-        </section>
+          </section>
+        </div>
 
         {/* Projects Section */}
         <section id="projects" className={`py-32 px-6 border-t transition-colors duration-400 ${isDark ? 'border-zinc-900/50' : 'border-slate-100'}`} style={{ background: isDark ? '#0a0a0a' : 'linear-gradient(135deg, #FFFFFF 0%, #FFF7F8 40%, #FFFFFF 80%, #FFF5F7 100%)' }}>
