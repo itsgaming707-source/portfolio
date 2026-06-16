@@ -5,6 +5,7 @@ import Typed from "typed.js";
 import { motion, AnimatePresence, useMotionValue, useMotionTemplate, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import ParticleNetwork from "@/components/ParticleNetwork";
+import SplashScreen from "@/components/SplashScreen";
 import { useTheme } from "@/context/ThemeContext";
 
 export default function Home() {
@@ -16,6 +17,7 @@ export default function Home() {
   const { theme, toggleTheme } = useTheme();
   const isDark = theme === "dark";
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [splashDone, setSplashDone] = useState(false);
 
   const handleThemeToggle = (e?: React.MouseEvent<HTMLElement>) => {
     if (e) {
@@ -145,6 +147,16 @@ export default function Home() {
 
   return (
     <>
+      {/* Splash Screen — plays once on initial load */}
+      <SplashScreen onComplete={() => setSplashDone(true)} />
+
+      {/* Main site content — fades in after splash */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: splashDone ? 1 : 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        style={{ pointerEvents: splashDone ? "auto" : "none" }}
+      >
       {/* Decorative Background Glows */}
       <div className="fixed top-0 left-0 w-full h-full pointer-events-none -z-10 overflow-hidden">
         <div className={`absolute -top-[20%] -left-[10%] w-[60%] h-[60%] rounded-full blur-[120px] ${isDark ? 'bg-blue-500/5' : 'bg-rose-400/8'}`}></div>
@@ -942,12 +954,7 @@ export default function Home() {
         </div>
       </footer>
 
+      </motion.div>
     </>
   );
 }
-
-
-
-
-
-
