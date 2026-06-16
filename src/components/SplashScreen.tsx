@@ -38,7 +38,8 @@ export default function SplashScreen({
       clearTimeout(completeTimer);
       document.body.style.overflow = "";
     };
-  }, [onComplete]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const text = "hello";
 
