@@ -197,6 +197,26 @@ export default function Home() {
             </span>
           </motion.button>
 
+          {/* Theme Toggle - Mobile */}
+          <button
+            onClick={handleThemeToggle}
+            onPointerEnter={(e) => handleThemeHover(e, true)}
+            onPointerLeave={(e) => handleThemeHover(e, false)}
+            className={`md:hidden flex items-center justify-center w-9 h-9 rounded-full border transition-colors duration-300 ${isDark ? 'border-zinc-700 text-amber-400' : 'border-zinc-300 text-slate-700'}`}
+            aria-label="Toggle theme"
+          >
+            {isDark ? (
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <circle cx="12" cy="12" r="5" />
+                <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+              </svg>
+            ) : (
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+              </svg>
+            )}
+          </button>
+
           {/* Desktop Links */}
           <motion.div
             initial={{ opacity: 0, y: -10 }}
@@ -212,26 +232,7 @@ export default function Home() {
             <a href="#contact" onClick={() => setActiveTab('Contact')} className={`cursor-pointer transition-colors ${activeTab === 'Contact' ? (isDark ? 'text-blue-400 font-medium border-b border-blue-400/50 pb-1' : 'text-[#e11d48] font-semibold border-b-2 border-[#e11d48] pb-0.5') : (isDark ? 'text-zinc-400 hover:text-zinc-100' : 'text-slate-600 hover:text-[#e11d48]')}`}>Contact</a>
           </motion.div>
 
-          <div className="flex items-center gap-4 md:hidden">
-            {/* Theme Toggle - Mobile */}
-            <button
-              onClick={handleThemeToggle}
-              onPointerEnter={(e) => handleThemeHover(e, true)}
-              onPointerLeave={(e) => handleThemeHover(e, false)}
-              className={`flex items-center justify-center w-9 h-9 rounded-full border transition-colors duration-300 ${isDark ? 'border-zinc-700 text-amber-400' : 'border-zinc-300 text-slate-700'}`}
-              aria-label="Toggle theme"
-            >
-              {isDark ? (
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <circle cx="12" cy="12" r="5" />
-                  <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
-                </svg>
-              ) : (
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-                </svg>
-              )}
-            </button>
+          <div className="flex items-center md:hidden">
             {/* Mobile Menu Toggle Button */}
             <button
               className={`transition-colors flex items-center justify-center p-1 ${isDark ? 'text-zinc-400 hover:text-white' : 'text-zinc-500 hover:text-zinc-900'}`}
