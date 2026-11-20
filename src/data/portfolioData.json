@@ -1,0 +1,197 @@
+{
+  "profile": {
+    "name": "Nikhil Yadav",
+    "alternateName": "Nikhil Ydv",
+    "typedStrings": [
+      "Nikhil Yadav"
+    ],
+    "role": "Data Analyst | SQL | Python | Power BI",
+    "profileImage": "/main-photo.png",
+    "resumeUrl": "",
+    "statusQuote": "Open to internships, collaborations, and opportunities."
+  },
+  "about": {
+    "title": "About Me",
+    "paragraphs": [
+      "I'm Nikhil Yadav, a BCA 2nd year student and an aspiring Data Analyst. I work with SQL, Python, and Power BI to understand data and find useful insights.",
+      "I enjoy solving problems using data and creating simple dashboards that make information easy to understand. I'm currently focused on building my skills through practice and real-world projects.",
+      "I'm looking for opportunities to learn, grow, and gain hands-on experience in data analytics."
+    ]
+  },
+  "projects": [
+    {
+      "id": "proj-1",
+      "title": "Blinkit Sales Analysis",
+      "description": "Performed end-to-end analysis of Blinkit sales data using Python to uncover trends in product performance, pricing, and outlet impact.",
+      "tags": [
+        "Python",
+        "Pandas",
+        "Seaborn",
+        "EDA"
+      ],
+      "insights": [
+        "Tier 1 & 2 outlets outperform Tier 3 in average sales",
+        "Pricing has a stronger impact on sales than item visibility",
+        "Supermarket Type 1 contributes highest sales volume"
+      ],
+      "githubUrl": "https://github.com/nikhilydv1026/blinkit-sales-analysis-python",
+      "demoUrl": "",
+      "accentColor": "blue"
+    },
+    {
+      "id": "proj-2",
+      "title": "Customer Analytics Project",
+      "description": "End-to-end customer behavior analysis using Python, SQL, and Power BI to identify trends and improve business decision-making.",
+      "tags": [
+        "Python",
+        "SQL",
+        "Power BI"
+      ],
+      "insights": [
+        "Identified high-value customer segments",
+        "Analyzed purchasing patterns across categories",
+        "Built interactive dashboard for business insights"
+      ],
+      "githubUrl": "https://github.com/nikhilydv1026/customer-analytics-project",
+      "demoUrl": "",
+      "accentColor": "teal"
+    },
+    {
+      "id": "proj-3",
+      "title": "Zepto SQL Data Analysis",
+      "description": "Analyzed e-commerce inventory dataset using SQL to extract business insights related to pricing, stock, and product performance.",
+      "tags": [
+        "SQL",
+        "PostgreSQL",
+        "Data Cleaning"
+      ],
+      "insights": [
+        "Identified top discounted and high-demand products",
+        "Found high-value items that are out of stock",
+        "Analyzed revenue contribution by category"
+      ],
+      "githubUrl": "https://github.com/nikhilydv1026/zepto-sql-data-analysis",
+      "demoUrl": "",
+      "accentColor": "zinc"
+    },
+    {
+      "id": "proj-4",
+      "title": "Spam Detection Using Naive Bayes",
+      "description": "Built a spam classification system from scratch using pure Python without any machine learning libraries.",
+      "tags": [
+        "Python",
+        "Probability",
+        "NLP"
+      ],
+      "insights": [
+        "Implemented Naive Bayes with Laplace smoothing",
+        "Used log-space computation for numerical stability",
+        "Classifies messages with probability-based scoring"
+      ],
+      "githubUrl": "https://github.com/nikhilydv1026/spam-detection-naive-bayes",
+      "demoUrl": "",
+      "accentColor": "emerald"
+    }
+  ],
+  "skillCategories": [
+    {
+      "id": "cat-1",
+      "title": "Data Analysis",
+      "skills": [
+        {
+          "id": "skill-1",
+          "name": "Python",
+          "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg",
+          "note": ""
+        },
+        {
+          "id": "skill-2",
+          "name": "PostgreSQL",
+          "icon": "/logo/sql-new-logo.png",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "cat-2",
+      "title": "Visualization",
+      "skills": [
+        {
+          "id": "skill-3",
+          "name": "Power BI",
+          "icon": "powerbi-svg",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "cat-4",
+      "title": "Tools",
+      "skills": [
+        {
+          "id": "skill-5",
+          "name": "Git & GitHub",
+          "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "cat-5",
+      "title": "AI & Automation",
+      "skills": [
+        {
+          "id": "skill-6",
+          "name": "ChatGPT",
+          "icon": "chatgpt-svg",
+          "note": ""
+        },
+        {
+          "id": "skill-7",
+          "name": "Claude",
+          "icon": "/logo/claude_logo.jpg",
+          "note": ""
+        }
+      ]
+    }
+  ],
+  "certifications": [
+    {
+      "id": "cert-1",
+      "title": "Data Analysis with Python",
+      "issuer": "IBM (Cognitive Class)",
+      "image": "/certificates/data analysis with python.png",
+      "link": "",
+      "accentColor": "blue"
+    },
+    {
+      "id": "cert-2",
+      "title": "Intro to Data Analytics",
+      "issuer": "Simplilearn SkillUp",
+      "image": "/certificates/introduction to data analysis.png",
+      "link": "",
+      "accentColor": "teal"
+    },
+    {
+      "id": "cert-3",
+      "title": "SQL Foundation",
+      "issuer": "Skill Course (Learn More Pro)",
+      "image": "/certificates/sql.png",
+      "link": "",
+      "accentColor": "emerald"
+    }
+  ],
+  "contact": {
+    "heading": "Let's Connect",
+    "subheading": "Open to internships, collaborations, and opportunities.",
+    "social": {
+      "email": "nikhilydv1026@gmail.com",
+      "linkedin": "https://www.linkedin.com/in/nikhilydv1026",
+      "linkedinUser": "nikhilydv1026",
+      "github": "https://github.com/nikhilydv1026",
+      "githubUser": "nikhilydv1026",
+      "twitter": "",
+      "twitterUser": ""
+    }
+  }
+}

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import newPhoto from "../../new photo.png";
 import { useTheme } from "../context/ThemeContext";
@@ -11,6 +12,7 @@ type Message = {
 };
 
 export default function Chatbot() {
+  const pathname = usePathname();
   const { theme } = useTheme();
   const isDark = theme === "dark";
   const [isOpen, setIsOpen] = useState(false);
@@ -21,6 +23,10 @@ export default function Chatbot() {
 
   const chatRef = useRef<HTMLDivElement>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  if (pathname?.startsWith("/admin")) {
+    return null;
+  }
 
   // Restore state from localStorage on mount
   useEffect(() => {
