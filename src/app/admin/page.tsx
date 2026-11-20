@@ -32,6 +32,7 @@ import { PortfolioData, ProjectItem, SkillCategory, CertificationItem } from "@/
 export default function AdminPage() {
   const [isAuthed, setIsAuthed] = useState<boolean | null>(null);
   const [authChecking, setAuthChecking] = useState(true);
+  const [usernameInput, setUsernameInput] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
   const [loginError, setLoginError] = useState("");
   const [activeTab, setActiveTab] = useState("overview");
@@ -42,6 +43,7 @@ export default function AdminPage() {
 
   // Security tab state
   const [oldPassword, setOldPassword] = useState("");
+  const [newAdminId, setNewAdminId] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [passwordChangeMsg, setPasswordChangeMsg] = useState<{ text: string; type: "success" | "error" } | null>(null);
 
@@ -84,7 +86,7 @@ export default function AdminPage() {
       const res = await fetch("/api/admin/auth", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ action: "login", password: passwordInput }),
+        body: JSON.stringify({ action: "login", username: usernameInput, password: passwordInput }),
       });
       const result = await res.json();
       if (res.ok && result.success) {
@@ -92,7 +94,7 @@ export default function AdminPage() {
         fetchData();
         showToast("Welcome to Admin Studio!");
       } else {
-        setLoginError(result.message || "Invalid password");
+        setLoginError(result.message || "Invalid Admin ID or password");
       }
     } catch {
       setLoginError("Server error. Please try again.");
@@ -166,15 +168,21 @@ export default function AdminPage() {
       const res = await fetch("/api/admin/auth", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ action: "change_password", oldPassword, newPassword }),
+        body: JSON.stringify({
+          action: "change_credentials",
+          oldPassword,
+          newUsername: newAdminId.trim() || undefined,
+          newPassword: newPassword || undefined,
+        }),
       });
       const result = await res.json();
       if (res.ok && result.success) {
-        setPasswordChangeMsg({ text: "Password changed successfully!", type: "success" });
+        setPasswordChangeMsg({ text: "Credentials updated successfully!", type: "success" });
         setOldPassword("");
+        setNewAdminId("");
         setNewPassword("");
       } else {
-        setPasswordChangeMsg({ text: result.message || "Error changing password", type: "error" });
+        setPasswordChangeMsg({ text: result.message || "Error updating credentials", type: "error" });
       }
     } catch {
       setPasswordChangeMsg({ text: "Server error", type: "error" });
@@ -381,6 +389,21 @@ export default function AdminPage() {
           <form onSubmit={handleLogin} className="space-y-4">
             <div>
               <label className="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">
+                Admin ID
+              </label>
+              <input
+                type="text"
+                value={usernameInput}
+                onChange={(e) => setUsernameInput(e.target.value)}
+                placeholder="Enter Admin ID"
+                className="w-full px-4 py-3 rounded-xl bg-slate-950/70 border border-slate-700/60 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-rose-500 transition-all"
+                autoFocus
+                required
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">
                 Admin Password
               </label>
               <input
@@ -389,7 +412,6 @@ export default function AdminPage() {
                 onChange={(e) => setPasswordInput(e.target.value)}
                 placeholder="Enter password..."
                 className="w-full px-4 py-3 rounded-xl bg-slate-950/70 border border-slate-700/60 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-rose-500 transition-all"
-                autoFocus
                 required
               />
             </div>
@@ -1310,29 +1332,40 @@ export default function AdminPage() {
               {/* Change Password Card */}
               <div className="p-6 rounded-2xl bg-slate-900/60 border border-slate-800 space-y-5 max-w-xl">
                 <h3 className="text-lg font-bold text-white flex items-center gap-2">
-                  <Lock className="w-5 h-5 text-rose-400" /> Change Admin Password
+                  <Lock className="w-5 h-5 text-rose-400" /> Admin Credentials & Security
                 </h3>
 
                 <form onSubmit={handleChangePassword} className="space-y-4">
                   <div>
-                    <label className="block text-xs font-semibold text-slate-300 mb-2">Current Password</label>
+                    <label className="block text-xs font-semibold text-slate-300 mb-2">Current Password (Required)</label>
                     <input
                       type="password"
                       value={oldPassword}
                       onChange={(e) => setOldPassword(e.target.value)}
                       required
+                      placeholder="Enter current password..."
                       className="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-700/80 text-white text-sm focus:outline-none focus:ring-2 focus:ring-rose-500"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-semibold text-slate-300 mb-2">New Password</label>
+                    <label className="block text-xs font-semibold text-slate-300 mb-2">New Admin ID (Optional)</label>
+                    <input
+                      type="text"
+                      value={newAdminId}
+                      onChange={(e) => setNewAdminId(e.target.value)}
+                      placeholder="Leave blank to keep current ID"
+                      className="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-700/80 text-white text-sm focus:outline-none focus:ring-2 focus:ring-rose-500"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-semibold text-slate-300 mb-2">New Password (Optional)</label>
                     <input
                       type="password"
                       value={newPassword}
                       onChange={(e) => setNewPassword(e.target.value)}
-                      required
-                      placeholder="Min 3 characters"
+                      placeholder="Leave blank to keep current password"
                       className="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-700/80 text-white text-sm focus:outline-none focus:ring-2 focus:ring-rose-500"
                     />
                   </div>
